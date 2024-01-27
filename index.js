@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Handle CORS preflight requests
 app.options('*', cors());
 
-app.use('/api/screenshot', screenshotRouter);
+app.use('/screenshot', screenshotRouter);
 
 
 // Start the server
