@@ -13,7 +13,7 @@ router.get('/:id', async (req, res) => {
     const browser = await chromium.launch();
 
     const path = `public/screenshots/memezoo-meme-${id}.png`
-    const host = 'http://localhost:3000'
+    const host = 'https://memezoo.app'
  
     const page = await browser.newPage();
     await page.setViewportSize({ width: 1280, height: 1080 });
