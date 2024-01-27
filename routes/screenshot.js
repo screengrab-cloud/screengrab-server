@@ -14,13 +14,19 @@ router.get('/:id', async (req, res) => {
 
     const path = `public/screenshots/memezoo-meme-${id}.png`
     const host = 'https://memezoo.app'
+    const url = host + "/memes/image?id=" + id
+
+    console.log('url', url)
  
     const page = await browser.newPage();
     await page.setViewportSize({ width: 1280, height: 1080 });
-    await page.goto(host + "/memes/image?id=" + id);
+    await page.goto(url);
     await page.waitForLoadState('networkidle');
     await page.locator('.meme-image').screenshot({ path });
     await browser.close();
+
+    console.log('path', path)
+
     res.json({
       data: {
         url: path
