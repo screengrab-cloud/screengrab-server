@@ -1,8 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const bodyParser = require('body-parser');
+
+require('dotenv').config()
 
 const app = express();
+app.use(bodyParser.json());
+
 const screenshotRouter = require('./routes/screenshot');
 
 // Enable CORS for all routes
@@ -18,7 +23,7 @@ app.use('/screenshot', screenshotRouter);
 
 
 // Start the server
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 3031;
 app.listen(PORT, () => {
   console.log(`Server is running on `, `http://localhost:${PORT}`);
 });

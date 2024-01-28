@@ -1,11 +1,8 @@
 const express = require('express');
 const { chromium } = require("playwright");
-const fs = require('fs')
-
 const router = express.Router();
 
-const PORT = process.env.PORT
-const HOST_URL = 'http://localhost:' + PORT
+const HOST_URL = process.env.HOST_URL
 
 router.post('/create', async (req, res) => {
   try {
@@ -22,15 +19,13 @@ router.post('/create', async (req, res) => {
     const imageName = 'test.png'
     const urlPath = `screenshot/${imageName}`
     const filePath = `public/${urlPath}`
-
-    console.log('url', { url, id, path })
  
     const page = await browser.newPage();
     await page.setViewportSize(viewportSize);
     await page.goto(url);
     await page.waitForLoadState('networkidle');
     if (locator) {
-      await page.locator(locator).screenshot({ path: filePath });
+      await page.locator(locator).first().screenshot({ path: filePath });
     } else {
       await page.screenshot({ path: filePath });
     }
@@ -40,11 +35,20 @@ router.post('/create', async (req, res) => {
       url: `${HOST_URL}/${urlPath}`
     }
 
-    res.json(data)
+    console.log('data', data)
+
+    res.json({
+      ok: true,
+      data
+    })
     
   } catch (error) {
     console.error('Error capturing screenshot:', error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).json({
+      error: {
+        message: error.message
+      }
+    });
   }
 });
 
