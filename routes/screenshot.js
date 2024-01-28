@@ -2,6 +2,7 @@ const express = require('express');
 const { chromium } = require("playwright");
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
+const { sleep } = require('../utils/common')
 
 const HOST_URL = process.env.HOST_URL
 
@@ -12,6 +13,7 @@ router.post('/create', async (req, res) => {
     const viewportSize = json.viewportSize || { width: 1280, height: 1080 }
     const url = json.url
     const locator = json.locator
+    const wait = json.wait
 
     console.log('json', json)
 
@@ -26,6 +28,9 @@ router.post('/create', async (req, res) => {
     await page.setViewportSize(viewportSize);
     await page.goto(url);
     await page.waitForLoadState('networkidle');
+    if (wait) {
+      await sleep(wait)
+    }
     if (locator) {
       await page.locator(locator).first().screenshot({ path: filePath });
     } else {
