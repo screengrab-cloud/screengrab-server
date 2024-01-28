@@ -1,6 +1,7 @@
 const express = require('express');
 const { chromium } = require("playwright");
 const router = express.Router();
+const { v4: uuidv4 } = require('uuid');
 
 const HOST_URL = process.env.HOST_URL
 
@@ -16,7 +17,8 @@ router.post('/create', async (req, res) => {
 
     const browser = await chromium.launch();
 
-    const imageName = 'test.png'
+    const uid = uuidv4()
+    const imageName = `${uid}.png`
     const urlPath = `screenshot/${imageName}`
     const filePath = `public/${urlPath}`
  
