@@ -8,7 +8,21 @@ Fist log into https://screengrab.cloud and get your API Key from the dashboard
 
 ## Quick Start
 
-Clone the repository
+### Install as a library in your project
+
+```sh
+npm install --save screengrab-server
+```
+
+```js
+const server = require("screengrab-server")
+const PORT = process.env.PORT || 3000
+server.listen(PORT, () => {
+  console.log('Server listening on ', PORT)
+})
+```
+
+### OR Clone the repository
 
 ```sh
 git clone https://github.com/imageapi-dev/screengrab-server
@@ -25,7 +39,7 @@ npm run start # start dev server
 Import ScreenGrab.js into your code and get screenshots from your dev server
 
 ```ts
-import { ScreenGrab } from 'screngrab.js'
+import { ScreenGrab } from 'screengrab.js'
 
 const screengrab = ScreenGrab({
   server: 'http://localhost:3031'
@@ -40,7 +54,7 @@ console.log('screengrab url', image.url)
 To use the cloud hosted ScreenGrab.cloud
 
 ```ts
-import { ScreenGrab } from 'screngrab.js'
+import { ScreenGrab } from 'screengrab.js'
 
 const screengrab = ScreenGrab('api-key')
 
