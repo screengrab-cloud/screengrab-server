@@ -15,6 +15,8 @@ const screengrab = ScreenGrab('api-key')
 
 const image = await screengrab.url('https://memezoo.app').grab()
 
+console.log('screengrab url', image.url)
+
 ```
 
 For detailed information refer to https://docs.screengrab.cloud 
