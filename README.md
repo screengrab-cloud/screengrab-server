@@ -17,3 +17,4 @@ const image = await screengrab.url('https://memezoo.app').grab()
 
 ```
 
+For detailed information refer to https://docs.screengrab.cloud 
