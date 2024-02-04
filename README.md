@@ -36,7 +36,11 @@ cp .env.example .env # copy to .env
 npm run start # start dev server
 ```
 
-Import ScreenGrab.js into your code and get screenshots from your dev server
+### Use `screengrab.js` to take screenshots
+
+See: https://github.com/screengrab-cloud/screengrab.js
+
+Import `screengrab.js` into your code and get screenshots from your dev server
 
 ```ts
 import { ScreenGrab } from 'screengrab.js'

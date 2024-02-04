@@ -1,0 +1,15 @@
+{
+  "name": "screengrab-server-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node screengrab-server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "screengrab-server": "^1.0.0"
+  }
+}
