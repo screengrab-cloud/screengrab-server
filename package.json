@@ -1,5 +1,5 @@
 {
-  "name": "playwright-screenshots-server",
+  "name": "screengrab-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,8 +8,8 @@
     "dev": "nodemon start.js",
     "postinstall": "npx playwright install --with-deps chromium"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["screengrab", "screenshot", "react", "nodejs"],
+  "author": "gabe@fijiwebdesign.com",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
