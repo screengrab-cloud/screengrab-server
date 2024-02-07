@@ -31,15 +31,19 @@ router.post('/create', async (req, res) => {
     if (wait) {
       await sleep(wait)
     }
+    let innerHTML = ''
     if (locator) {
+      innerHTML = await page.locator(locator).first().innerHTML()
       await page.locator(locator).first().screenshot({ path: filePath });
     } else {
+      innerHTML = await page.locator('body').first().innerHTML()
       await page.screenshot({ path: filePath });
     }
     await browser.close();
 
     const data = {
-      url: `${HOST_URL}/${urlPath}`
+      url: `${HOST_URL}/${urlPath}`,
+      innerHTML
     }
 
     console.log('data', data)
