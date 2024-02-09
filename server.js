@@ -8,8 +8,6 @@ require('dotenv').config()
 const app = express();
 app.use(bodyParser.json());
 
-const screenshotRouter = require('./routes/screenshot');
-
 // Enable CORS for all routes
 app.use(cors());
 
@@ -19,7 +17,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Handle CORS preflight requests
 app.options('*', cors());
 
-app.use('/screenshot', screenshotRouter);
+app.use('/screenshot', require('./routes/screenshot'));
+app.use('/html', require('./routes/html'));
 
 
 module.exports = app

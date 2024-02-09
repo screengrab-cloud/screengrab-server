@@ -1,12 +1,9 @@
 const express = require('express');
 const { chromium } = require("playwright");
 const router = express.Router();
-const { v4: uuidv4 } = require('uuid');
 const { sleep } = require('../utils/common')
 
-const HOST_URL = process.env.HOST_URL
-
-router.post('/create', async (req, res) => {
+router.post('/innerHTML', async (req, res) => {
   try {
 
     const json = req.body
@@ -18,11 +15,6 @@ router.post('/create', async (req, res) => {
     console.log('request', json)
 
     const browser = await chromium.launch();
-
-    const uid = uuidv4()
-    const imageName = `${uid}.png`
-    const urlPath = `screenshot/${imageName}`
-    const filePath = `public/${urlPath}`
  
     const page = await browser.newPage();
     await page.setViewportSize(viewportSize);
@@ -34,15 +26,12 @@ router.post('/create', async (req, res) => {
     let innerHTML = ''
     if (locator) {
       innerHTML = await page.locator(locator).first().innerHTML()
-      await page.locator(locator).first().screenshot({ path: filePath });
     } else {
       innerHTML = await page.locator(locator).first().innerHTML()
-      await page.screenshot({ path: filePath });
     }
     await browser.close();
 
     const data = {
-      url: `${HOST_URL}/${urlPath}`,
       innerHTML
     }
 
@@ -54,7 +43,7 @@ router.post('/create', async (req, res) => {
     })
     
   } catch (error) {
-    console.error('Error capturing screenshot:', error);
+    console.error('Error capturing html:', error);
     res.status(500).json({
       error: {
         message: error.message
