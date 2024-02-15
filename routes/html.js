@@ -49,6 +49,10 @@ router.post('/innerHTML', async (req, res) => {
         message: error.message
       }
     });
+
+    setTimeout(() => {
+      process.exit(1)
+    }, 5000)
   }
 });
 
