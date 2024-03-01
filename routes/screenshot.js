@@ -1,5 +1,5 @@
 const express = require('express');
-const { chromium } = require("playwright");
+const { firefox } = require("playwright");
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
 const { sleep } = require('../utils/common')
@@ -17,7 +17,7 @@ router.post('/create', async (req, res) => {
 
     console.log('request', json)
 
-    const browser = await chromium.launch();
+    const browser = await firefox.launch();
 
     const uid = uuidv4()
     const imageName = `${uid}.png`
